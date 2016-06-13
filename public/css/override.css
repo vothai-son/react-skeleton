@@ -1,0 +1,41 @@
+﻿.nav .upgrade_button {
+  height: 30px;
+  font-size: 12px;
+  padding-top: 1px;
+}
+
+.sprite-header-home:before {
+  -shalam-sprite: "amsterdam/header/home.png" dest-size(32px 32px);
+  ;
+  background: url(../img/amsterdam/sprite.compat--2EiG2.png) -32px -2319px;
+  background: url(../img/amsterdam/sprite-hg2eoN.png) -210px -4559px/256px 5050px;
+}
+
+.sprite-header-home-active:before, .sprite-header-home-hover:before {
+  -shalam-sprite: "amsterdam/header/home_active.png" dest-size(32px 32px);
+  ;
+  background: url(../img/amsterdam/sprite.compat--2EiG2.png) -64px -2319px;
+  background: url(../img/amsterdam/sprite-hg2eoN.png) -170px -4678px/256px 5050px;
+}
+
+.sprite-header-settings:before {
+  -shalam-sprite: "amsterdam/header/settings.png" dest-size(32px 32px);
+  ;
+  background: url(../img/amsterdam/sprite.compat--2EiG2.png) -416px -2319px;
+  background: url(../img/amsterdam/sprite-hg2eoN.png) -68px -4755px/256px 5050px;
+}
+
+.sprite-header-settings-active:before, .sprite-header-settings-hover:before {
+  -shalam-sprite: "amsterdam/header/settings_active.png" dest-size(32px 32px);
+  ;
+  background: url(../img/amsterdam/sprite.compat--2EiG2.png) -448px -2319px;
+  background: url(../img/amsterdam/sprite-hg2eoN.png) -102px -4756px/256px 5050px;
+}
+
+
+.r3 .sprite-header-folder-active:after, .r3 .sprite-header-folder-hover:after, .r3 .sprite-header-folder:after {
+  -shalam-sprite: "amsterdam/header/headerfilesdark.png" dest-size(32px 32px);
+  ;
+  background: url(../img/amsterdam/sprite.compat--2EiG2.png) -480px -2287px;
+  background: url(../img/amsterdam/sprite-hg2eoN.png) -68px -4675px/256px 5050px;
+}
