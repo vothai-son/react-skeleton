@@ -26875,9 +26875,11 @@ var Routes = React.createElement(
 
 module.exports = Routes;
 
-},{"./components/pages/BasePage.jsx":252,"./components/pages/FoldersPage.jsx":253,"./components/pages/HomePage.jsx":265,"./components/pages/SettingsPage.jsx":266,"react":247,"react-router":51}],250:[function(require,module,exports){
+},{"./components/pages/BasePage.jsx":255,"./components/pages/FoldersPage.jsx":256,"./components/pages/HomePage.jsx":273,"./components/pages/SettingsPage.jsx":274,"react":247,"react-router":51}],250:[function(require,module,exports){
 var React = require('react');
 var NavItem = require('./NavItem.jsx');
+var NavbarButton = require('./NavbarButton.jsx');
+var NavbarDropdownButton = require('./NavbarDropdownButton.jsx');
 
 var NavBar = React.createClass({
   displayName: 'NavBar',
@@ -26887,11 +26889,6 @@ var NavBar = React.createClass({
   },
 
   render: function () {
-    //var createLinkItem = function (item, index) {
-    //  return (
-    //    <NavItem key={item.title + index} href={item.href} title={item.title} className={item.className}/>
-    //    );
-    //}
 
     var styleTable = {
       height: '100%', border: 0, cellpadding: 0, cellspacing: 0
@@ -26948,7 +26945,7 @@ var NavBar = React.createClass({
               ),
               React.createElement(
                 'div',
-                { id: 'search_unit', className: 'search_unit_left' },
+                { className: 'search_unit_left' },
                 React.createElement(
                   'form',
                   { id: 'search_files_form', className: 'search_form nav_content', role: 'search', action: '', method: 'POST', name: 'search_form', 'data-type': 'search-form', 'data-resin-feature': 'search' },
@@ -26956,119 +26953,14 @@ var NavBar = React.createClass({
                   React.createElement('button', { className: 'search_field search_button', 'data-type': 'search-btn', type: 'submit' })
                 )
               ),
-              ' ',
-              React.createElement(
-                'ul',
-                { className: 'unit_ext sham-header menu-wrapper tabs_unit' },
-                React.createElement(
-                  'li',
-                  { id: 'current_user_tab', className: 'nav-icon mrn', 'data-admin-view': 'false', 'aria-haspopup': 'true' },
-                  React.createElement(
-                    'strong',
-                    { className: 'user_name', 'data-type': 'menu-toggle-button', 'data-resin-feature': 'none', 'data-resin-target': 'profilemenu' },
-                    React.createElement(
-                      'a',
-                      { href: '#', className: 'ellipsis ellipsis_170 sham-user-public-name' },
-                      'vo thaison'
-                    )
-                  ),
-                  React.createElement(
-                    'menu',
-                    { className: 'menu is-right-aligned sham-user-menu', 'data-resin-component': 'header|profilemenu' },
-                    React.createElement(
-                      'li',
-                      { className: 'sham-user-menu-profile', 'data-resin-feature': 'none' },
-                      React.createElement('img', { src: 'img/box_user_avatar_small-QaPHWb.png', alt: '', className: 'profile-image' }),
-                      React.createElement(
-                        'a',
-                        { href: 'https://app.box.com/profile', className: 'menu-option', 'data-resin-target': 'profile' },
-                        'vo thaison ',
-                        React.createElement('br', null),
-                        ' View Profile'
-                      )
-                    ),
-                    React.createElement('hr', { className: 'menu-divider' }),
-                    React.createElement(
-                      'li',
-                      { className: 'sham-user-menu-settings', 'data-resin-feature': 'none' },
-                      React.createElement(
-                        'a',
-                        { href: 'https://app.box.com/settings', className: 'menu-option', 'data-resin-target': 'accountsettings' },
-                        ' Account Settings'
-                      )
-                    ),
-                    React.createElement(
-                      'li',
-                      { className: 'sham-user-menu-collaborators', 'data-resin-feature': 'collab' },
-                      React.createElement(
-                        'a',
-                        { href: 'https://app.box.com/contacts', className: 'menu-option', 'data-resin-target': 'collaborators' },
-                        ' Collaborators'
-                      )
-                    ),
-                    React.createElement(
-                      'li',
-                      { className: 'sham-user-menu-apps', 'data-resin-feature': 'none' },
-                      React.createElement(
-                        'a',
-                        { href: 'https://app.box.com/apps', className: 'menu-option', 'data-resin-target': 'apps' },
-                        ' Apps'
-                      )
-                    ),
-                    React.createElement(
-                      'li',
-                      { className: 'sham-user-menu-trash', 'data-resin-feature': 'none' },
-                      React.createElement(
-                        'a',
-                        { href: 'https://app.box.com/trash', className: 'menu-option', 'data-resin-target': 'trash' },
-                        ' Trash'
-                      )
-                    ),
-                    React.createElement(
-                      'li',
-                      { className: 'sham-user-menu-help', 'data-resin-feature': 'none' },
-                      React.createElement(
-                        'a',
-                        { href: 'https://app.box.com/help', target: '_blank', className: 'menu-option', 'data-resin-target': 'help' },
-                        ' Help'
-                      )
-                    ),
-                    React.createElement(
-                      'li',
-                      { className: 'sham-user-menu-sync', 'data-resin-feature': 'none' },
-                      React.createElement(
-                        'a',
-                        { href: 'https://app.box.com/settings/sync', className: 'menu-option', 'data-resin-target': 'getboxsync' },
-                        ' Get Box Sync'
-                      )
-                    ),
-                    React.createElement(
-                      'li',
-                      { className: 'sham-user-menu-logout', 'data-resin-feature': 'none' },
-                      React.createElement(
-                        'a',
-                        { href: 'https://app.box.com/logout', className: 'menu-option', 'data-resin-target': 'logout' },
-                        ' Log Out'
-                      )
-                    )
-                  )
-                )
-              ),
+              React.createElement(NavbarDropdownButton, { text: 'vothaison' }),
               React.createElement(
                 'ul',
                 { className: 'unit_ext current_user_name_unit', 'data-resin-feature': 'upgrade' },
                 React.createElement(
                   'li',
                   { id: 'upgrade_button', className: 'nav_icon_drop_link phm mrn upgrade_button' },
-                  React.createElement(
-                    'a',
-                    { id: 'upgrade_button_link', href: 'https://app.box.com/ref/upgrade_header_upgrade', 'data-resin-target': 'upgrade' },
-                    React.createElement(
-                      'span',
-                      { className: 'nav_icon' },
-                      'Upgrade'
-                    )
-                  )
+                  React.createElement(NavbarButton, { text: 'Upgrage' })
                 )
               ),
               React.createElement(
@@ -27086,7 +26978,125 @@ var NavBar = React.createClass({
 
 module.exports = NavBar;
 
-},{"./NavItem.jsx":251,"react":247}],251:[function(require,module,exports){
+},{"./NavItem.jsx":252,"./NavbarButton.jsx":253,"./NavbarDropdownButton.jsx":254,"react":247}],251:[function(require,module,exports){
+var React = require('react');
+
+var NavDropMenu = React.createClass({
+  displayName: 'NavDropMenu',
+
+  getInitialState: function () {
+    return { show: this.props.show };
+  },
+
+  componentWillReceiveProps: function (nextProps) {
+    this.setState({ show: nextProps.show });
+  },
+
+  render: function () {
+
+    var style = {};
+
+    if (this.state.show) {
+      style = {
+        display: 'block',
+        opacity: 1,
+        transform: 'rotateY(0deg) rotateX(0deg)'
+      };
+    } else {
+      style = {
+        display: 'none',
+        opacity: 0,
+        transform: 'rotateY(-10deg) rotateX(-10deg)'
+      };
+    }
+
+    return React.createElement(
+      'menu',
+      { className: 'menu is-right-aligned sham-user-menu', style: style },
+      React.createElement(
+        'li',
+        { className: 'sham-user-menu-profile', 'data-resin-feature': 'none' },
+        React.createElement('img', { src: 'img/box_user_avatar_small-QaPHWb.png', alt: '', className: 'profile-image' }),
+        React.createElement(
+          'a',
+          { href: 'https://app.box.com/profile', className: 'menu-option', 'data-resin-target': 'profile' },
+          'vo thaison ',
+          React.createElement('br', null),
+          ' View Profile'
+        )
+      ),
+      React.createElement('hr', { className: 'menu-divider' }),
+      React.createElement(
+        'li',
+        { className: 'sham-user-menu-settings', 'data-resin-feature': 'none' },
+        React.createElement(
+          'a',
+          { href: 'https://app.box.com/settings', className: 'menu-option', 'data-resin-target': 'accountsettings' },
+          ' Account Settings'
+        )
+      ),
+      React.createElement(
+        'li',
+        { className: 'sham-user-menu-collaborators', 'data-resin-feature': 'collab' },
+        React.createElement(
+          'a',
+          { href: 'https://app.box.com/contacts', className: 'menu-option', 'data-resin-target': 'collaborators' },
+          ' Collaborators'
+        )
+      ),
+      React.createElement(
+        'li',
+        { className: 'sham-user-menu-apps', 'data-resin-feature': 'none' },
+        React.createElement(
+          'a',
+          { href: 'https://app.box.com/apps', className: 'menu-option', 'data-resin-target': 'apps' },
+          ' Apps'
+        )
+      ),
+      React.createElement(
+        'li',
+        { className: 'sham-user-menu-trash', 'data-resin-feature': 'none' },
+        React.createElement(
+          'a',
+          { href: 'https://app.box.com/trash', className: 'menu-option', 'data-resin-target': 'trash' },
+          ' Trash'
+        )
+      ),
+      React.createElement(
+        'li',
+        { className: 'sham-user-menu-help', 'data-resin-feature': 'none' },
+        React.createElement(
+          'a',
+          { href: 'https://app.box.com/help', target: '_blank', className: 'menu-option', 'data-resin-target': 'help' },
+          ' Help'
+        )
+      ),
+      React.createElement(
+        'li',
+        { className: 'sham-user-menu-sync', 'data-resin-feature': 'none' },
+        React.createElement(
+          'a',
+          { href: 'https://app.box.com/settings/sync', className: 'menu-option', 'data-resin-target': 'getboxsync' },
+          ' Get Box Sync'
+        )
+      ),
+      React.createElement(
+        'li',
+        { className: 'sham-user-menu-logout', 'data-resin-feature': 'none' },
+        React.createElement(
+          'a',
+          { href: 'https://app.box.com/logout', className: 'menu-option', 'data-resin-target': 'logout' },
+          ' Log Out'
+        )
+      )
+    );
+  }
+
+});
+
+module.exports = NavDropMenu;
+
+},{"react":247}],252:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -27126,7 +27136,85 @@ var NavItem = React.createClass({
 
 module.exports = NavItem;
 
-},{"react":247,"react-router":51}],252:[function(require,module,exports){
+},{"react":247,"react-router":51}],253:[function(require,module,exports){
+var React = require('react');
+
+var NavbarButton = React.createClass({
+  displayName: "NavbarButton",
+
+  getInitialState: function () {
+    return {};
+  },
+
+  render: function () {
+    return React.createElement(
+      "a",
+      { id: "upgrade_button_link", href: "#", "data-resin-target": "upgrade" },
+      React.createElement(
+        "span",
+        { className: "nav_icon" },
+        this.props.text
+      )
+    );
+  }
+
+});
+
+module.exports = NavbarButton;
+
+},{"react":247}],254:[function(require,module,exports){
+var React = require('react');
+var NavDropMenu = require('./NavDropMenu.jsx');
+
+var NavbarButton = React.createClass({
+  displayName: 'NavbarButton',
+
+  getInitialState: function () {
+    return { showDropdown: false };
+  },
+
+  toggleShowDropdown: function (reactEvent) {
+    var self = this;
+
+    if (this.state.showDropdown) {
+      this.setState({ showDropdown: false });
+    } else {
+      this.setState({ showDropdown: true });
+
+      $('html').one('click', { reactEvent: reactEvent }, function (e) {
+        if (e.data.reactEvent.target !== e.target) {
+          self.setState({ showDropdown: false });
+        }
+      });
+    }
+  },
+
+  render: function () {
+    return React.createElement(
+      'ul',
+      { ref: 'clickTarget', className: 'unit_ext sham-header menu-wrapper tabs_unit', show: this.state.showDropdown, onClick: this.toggleShowDropdown },
+      React.createElement(
+        'li',
+        { className: 'nav-icon mrn' },
+        React.createElement(
+          'strong',
+          { className: 'user_name' },
+          React.createElement(
+            'a',
+            { href: 'javascript:void(0)', className: 'ellipsis ellipsis_170 sham-user-public-name' },
+            this.props.text
+          )
+        ),
+        React.createElement(NavDropMenu, { show: this.state.showDropdown })
+      )
+    );
+  }
+
+});
+
+module.exports = NavbarButton;
+
+},{"./NavDropMenu.jsx":251,"react":247}],255:[function(require,module,exports){
 var React = require('react');
 var NavBar = require('../nav/NavBar.jsx');
 
@@ -27149,7 +27237,7 @@ var BasePage = React.createClass({
 
 module.exports = BasePage;
 
-},{"../nav/NavBar.jsx":250,"react":247}],253:[function(require,module,exports){
+},{"../nav/NavBar.jsx":250,"react":247}],256:[function(require,module,exports){
 var React = require('react');
 var SubHeader = require('./FoldersPage/SubHeader.jsx');
 var PageBody = require('./FoldersPage/PageBody.jsx');
@@ -27183,35 +27271,30 @@ var FoldersPage = React.createClass({
 
 module.exports = FoldersPage;
 
-},{"./FoldersPage/PageBody.jsx":262,"./FoldersPage/SubHeader.jsx":264,"react":247}],254:[function(require,module,exports){
+},{"./FoldersPage/PageBody.jsx":270,"./FoldersPage/SubHeader.jsx":272,"react":247}],257:[function(require,module,exports){
 var React = require('react');
-var Modal = require('react-modal');
+var AddItemDialog = require('./AddItemDialog.jsx');
 var ActionButton = require('./ActionButton.jsx');
+var ButtonIcon = require('./ButtonIcon.jsx');
+var OptionsButton = require('./OptionsButton.jsx');
 
 var ActionBar = React.createClass({
   displayName: 'ActionBar',
 
 
   getInitialState: function () {
-    return { modalIsOpen: false };
+    return {
+      modalIsOpen: false,
+      newFolderName: ''
+    };
   },
 
   openModal: function () {
     this.setState({ modalIsOpen: true });
   },
 
-  afterOpenModal: function () {
-    // references are now sync'd and can be accessed.
-    this.refs.subtitle.style.color = '#f00';
-  },
-
-  closeModal: function () {
-    console.log('input value: ', this.refs.formInput.value);
-    this.setState({ modalIsOpen: false });
-  },
-
-  clickNew: function (e) {
-    this.openModal();
+  saveItem: function (name) {
+    console.log('Save this name : ', name);
   },
 
   render: function () {
@@ -27250,17 +27333,6 @@ var ActionBar = React.createClass({
       backgroundImage: 'url(https://app.box.com/index.php?rm=pic_storage_auth&amp;pic=euks!pac3kv01!FUz06iLrysq2g2_SOHMwH_JS0unYFvEUK44kaIOwe0A9oM0CllE3XCe9q9PDeBOdt6NR7agK4Qrjl57XqsjZ-foWHOJr31bgMeAGBZ3PY6XkvWFgx1upNBT5WATIDgXEsOkAfxd3dPnHD1AdILfwOzgW01o7mkjBjIVeitEKvA68Am7aEwL6MzPVZ_ti0HyPK1opitUXc8BMC6o7_VAqXW2xTycuGQHfYCoEanBG0KTgzMOZEqH0iwUyPyidWFkvBVlHJY0bU-z2hk7KX-ofM9igtlHd5S4SWxyc-B7Hv8EYyw6JTrfLgEWmlu3fEeZvqa8IF-IprAWhuJYNftuM7cEZEF4GwJLzkXFa3Cnc-g..);"'
     };
 
-    const customStyles = {
-      content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
-      }
-    };
-
     var menuItems = [{
       text: "File", type: "file",
       handleClick: function () {
@@ -27274,420 +27346,73 @@ var ActionBar = React.createClass({
       }.bind(this)
     }];
 
-    var popupStyle = {
-      top: '5px', left: '464.5px', width: '420px'
-    };
-
-    var submitStyle = {
-      left: '-10000px', position: 'absolute', width: '50px'
-    };
-
     var displayNone = {
       display: 'none'
     };
 
-    var positionRelative = {
-      position: 'relative'
+    var displayInlineBlock = {
+      display: 'inline-block'
     };
 
     return React.createElement(
       'div',
       { id: 'actionbar-stalking-wrapper', className: 'multiple-rows' },
-      React.createElement(
-        Modal,
-        { isOpen: this.state.modalIsOpen,
-          onAfterOpen: this.afterOpenModal,
-          onRequestClose: this.closeModal,
-          style: customStyles },
-        React.createElement(
-          'div',
-          { className: 'cntr_popup popup_layout ral popup_open', style: popupStyle },
-          React.createElement(
-            'div',
-            { className: 'popup_inner' },
-            React.createElement(
-              'div',
-              { className: 'hd rtll rtrl', id: 'box_popup_header' },
-              React.createElement(
-                'div',
-                { className: 'media mvn pvs' },
-                React.createElement('span', { id: 'popup_favicon', className: 'img mts sprite_24x24_folder' }),
-                '    ',
-                React.createElement('a', { className: 'img_ext mls sprite_16x16_close_modern', id: 'popup_title_close_button', href: '#', 'data-hover': 'tooltip', 'aria-label': 'Close' }),
-                React.createElement(
-                  'div',
-                  { id: 'popup_title_text', className: 'bd lc' },
-                  React.createElement(
-                    'h2',
-                    { className: 'popup_title ' },
-                    'Create New Folder'
-                  )
-                )
-              ),
-              '  ',
-              React.createElement('div', { id: 'popup_tabs', className: 'btn-group' })
-            ),
-            ' ',
-            React.createElement(
-              'div',
-              { id: 'j_popup_div' },
-              React.createElement(
-                'div',
-                { className: 'bd phl', id: 'popup_content' },
-                React.createElement(
-                  'form',
-                  { className: 'basic_list' },
-                  React.createElement('input', { type: 'submit', value: 'Submit', style: submitStyle }),
-                  React.createElement('ul', { className: 'basic_list pop_form' }),
-                  React.createElement(
-                    'li',
-                    null,
-                    React.createElement(
-                      'div',
-                      { className: 'line' },
-                      React.createElement(
-                        'div',
-                        { className: 'unit size1of1' },
-                        React.createElement(
-                          'strong',
-                          null,
-                          'Folder Name:'
-                        )
-                      )
-                    ),
-                    React.createElement(
-                      'div',
-                      { className: 'line split_column' },
-                      React.createElement(
-                        'div',
-                        { className: 'unit control mbm size1of1' },
-                        React.createElement('input', { type: 'text', name: 'folder_name', id: 'new_folder_popup_name', onclick: '', value: '', className: 'input' })
-                      )
-                    )
-                  )
-                )
-              )
-            ),
-            ' ',
-            React.createElement(
-              'div',
-              { className: 'progress center_contents', id: 'popup_progress_footer', style: displayNone },
-              React.createElement('ul', { id: 'popup_slider_progress_crumbs', className: 'popup_slider_progress_crumbs inline_list pvm' })
-            ),
-            ' ',
-            React.createElement(
-              'div',
-              { className: 'ft rbll rbrl ', id: 'popup_footer', style: positionRelative },
-              React.createElement(
-                'li',
-                { id: 'popup_footer_buttons', className: '' },
-                React.createElement(
-                  'div',
-                  { className: 'line split_column' },
-                  React.createElement(
-                    'div',
-                    { className: 'unit control size1of1' },
-                    React.createElement(
-                      'ul',
-                      { className: 'inline_list footer_buttons_list' },
-                      React.createElement(
-                        'li',
-                        { className: '' },
-                        React.createElement(
-                          'div',
-                          { className: 'control' },
-                          React.createElement(
-                            'button',
-                            { className: 'btn button_control', id: 'popup_button_okay' },
-                            React.createElement(
-                              'span',
-                              { className: 'button_val' },
-                              'Okay'
-                            )
-                          )
-                        )
-                      ),
-                      React.createElement(
-                        'li',
-                        { className: '' },
-                        React.createElement(
-                          'div',
-                          { className: 'control' },
-                          React.createElement(
-                            'button',
-                            { className: 'btn button_control', id: 'popup_button_cancel' },
-                            React.createElement(
-                              'span',
-                              { className: 'button_val' },
-                              'Cancel'
-                            )
-                          )
-                        )
-                      )
-                    )
-                  )
-                )
-              )
-            )
-          ),
-          React.createElement(
-            'a',
-            { href: '#', className: 'btn_label', id: 'popup_accessibility_helper' },
-            ' '
-          )
-        )
-      ),
+      React.createElement(AddItemDialog, { modalIsOpen: this.state.modalIsOpen,
+        clickSave: this.saveItem,
+        initialInputText: 'Clear me' }),
       React.createElement(
         'div',
-        { id: 'actionbar-wrapper', 'data-actionbar': 'files', 'data-resin-component': 'actionbar' },
+        null,
         React.createElement(
           'div',
-          { id: 'mod-actionbar-files', className: 'actionbar ptn man ', 'data-module': 'actionbar-files' },
+          { style: displayInlineBlock, className: 'actionbar ptn man' },
           React.createElement(
             'ul',
             { className: 'actionbar_buttons' },
             React.createElement(
               'li',
-              { className: 'actionbar_button_wrapper', 'data-resin-feature': 'upload' },
+              { className: 'actionbar_button_wrapper' },
               React.createElement(ActionButton, { text: 'New', hasDropdown: true, menuItems: menuItems })
             ),
             React.createElement(
               'li',
-              { className: 'actionbar_button_wrapper', 'data-resin-feature': 'interactions' },
-              React.createElement(
-                'button',
-                { id: 'folder_options_button', className: 'btn dropdown_button mvn hidden', 'data-type': 'folder-options-btn', 'aria-haspopup': 'true', 'data-legacy-popup': 'true', 'data-resin-target': 'moredropdown' },
-                React.createElement(
-                  'ul',
-                  { className: 'inline_list' },
-                  React.createElement(
-                    'li',
-                    { className: 'actionbar-more' },
-                    'More'
-                  ),
-                  React.createElement(
-                    'li',
-                    null,
-                    React.createElement(
-                      'span',
-                      { className: 'toggle' },
-                      React.createElement('b', { className: 'arrow' })
-                    )
-                  )
-                )
-              )
-            ),
-            React.createElement(
-              'li',
               { className: 'actionbar_button_wrapper', 'data-resin-feature': 'boxnotes' },
-              ' ',
-              React.createElement(
-                'button',
-                { id: 'new_box_note_button', className: 'btn mvn', 'data-type': 'new-box-note-btn', 'data-tooltip': '', 'data-tooltip-position': 'top', 'aria-label': 'Write a quick note', 'data-resin-target': 'newboxnote' },
-                React.createElement(
-                  'ul',
-                  { className: 'inline_list' },
-                  React.createElement('li', { className: 'icon sprite_actionbar_note_create_grey man mls' })
-                )
-              )
+              React.createElement(ButtonIcon, null)
             )
           )
         ),
         React.createElement(
           'div',
-          { id: 'mod-actionbar-search', className: 'actionbar ptn man ', 'data-module': 'actionbar-search' },
-          React.createElement('ul', { className: 'actionbar_buttons' })
-        ),
-        React.createElement(
-          'script',
-          { type: 'text/x-template', id: 'jst-search-page-title-placeholder' },
-          React.createElement(
-            'li',
-            { className: 'page_title' },
-            'Loading...'
-          )
-        ),
-        React.createElement(
-          'div',
-          { id: 'mod-actionbar-trash', className: 'actionbar ptn man ', 'data-module': 'actionbar-trash' },
-          React.createElement(
-            'ul',
-            { className: 'actionbar_buttons' },
-            React.createElement(
-              'li',
-              { className: 'actionbar_button_wrapper' },
-              React.createElement(
-                'button',
-                { id: 'restore_button', className: 'btn mvn', 'data-type': 'trash-restore' },
-                React.createElement(
-                  'ul',
-                  { className: 'inline_list' },
-                  React.createElement(
-                    'li',
-                    null,
-                    'Restore All'
-                  )
-                )
-              )
-            ),
-            React.createElement(
-              'li',
-              { className: 'actionbar_button_wrapper' },
-              React.createElement(
-                'button',
-                { id: 'delete_button', className: 'btn mvn', 'data-type': 'trash-delete' },
-                React.createElement(
-                  'ul',
-                  { className: 'inline_list' },
-                  React.createElement(
-                    'li',
-                    null,
-                    'Delete All'
-                  )
-                )
-              )
-            )
-          )
-        ),
-        React.createElement(
-          'div',
-          { id: 'actionbar-multiple-selection', className: 'actionbar ptn man handle_menu_events ' },
-          React.createElement(
-            'ul',
-            { className: 'actionbar_buttons' },
-            React.createElement(
-              'li',
-              { className: 'actionbar_button_wrapper', id: 'multi_options_download' },
-              React.createElement(
-                'button',
-                { className: 'btn mvn', 'data-hover': 'tooltip', 'aria-label': 'Download' },
-                React.createElement('span', { className: 'man icon sprite_actionbar_download' })
-              )
-            ),
-            React.createElement(
-              'li',
-              { className: 'actionbar_button_wrapper', id: 'multi_options_sharebar' },
-              React.createElement(
-                'button',
-                { className: 'btn mvn', 'data-hover': 'tooltip', 'aria-label': 'Send' },
-                React.createElement('span', { className: 'man icon sprite_actionbar_send' })
-              )
-            ),
-            React.createElement(
-              'li',
-              { className: 'actionbar_button_wrapper', id: 'multi_options_tag' },
-              React.createElement(
-                'button',
-                { className: 'btn mvn', 'data-hover': 'tooltip', 'aria-label': 'Tag' },
-                React.createElement('span', { className: 'man icon sprite_actionbar_tags' })
-              )
-            ),
-            React.createElement(
-              'li',
-              { className: 'actionbar_button_wrapper', id: 'multi_options_move' },
-              React.createElement(
-                'button',
-                { className: 'btn mvn', 'data-hover': 'tooltip', 'aria-label': 'Move / Copy' },
-                React.createElement('span', { className: 'man icon sprite_actionbar_movecopy' })
-              )
-            ),
-            React.createElement(
-              'li',
-              { className: 'actionbar_button_wrapper', id: 'multi_options_restore' },
-              React.createElement(
-                'button',
-                { className: 'btn mvn', 'data-hover': 'tooltip', 'aria-label': 'Restore' },
-                React.createElement('span', { className: 'man icon sprite_actionbar_restore' })
-              )
-            ),
-            React.createElement(
-              'li',
-              { className: 'actionbar_button_wrapper', id: 'multi_options_delete_me' },
-              React.createElement(
-                'button',
-                { className: 'btn mvn', 'data-hover': 'tooltip', 'aria-label': 'Delete' },
-                React.createElement('span', { className: 'man icon sprite_actionbar_delete' })
-              )
-            ),
-            React.createElement(
-              'li',
-              { className: 'actionbar_button_wrapper', id: 'multi_options_delete_from_trash' },
-              React.createElement(
-                'button',
-                { className: 'btn mvn', 'data-hover': 'tooltip', 'aria-label': 'Delete' },
-                React.createElement('span', { className: 'man icon sprite_actionbar_delete_from_trash' })
-              )
-            ),
-            React.createElement(
-              'li',
-              { className: 'actionbar_button_wrapper', id: 'multi_options_synchronize' },
-              React.createElement(
-                'button',
-                { className: 'btn mvn', 'data-hover': 'tooltip', 'aria-label': 'Sync' },
-                React.createElement('span', { className: 'man icon sprite_actionbar_sync' })
-              )
-            ),
-            React.createElement(
-              'li',
-              { className: 'actionbar-plain-text', id: 'multi_options_no_actions' },
-              React.createElement(
-                'em',
-                null,
-                'No actions available'
-              )
-            )
-          )
-        ),
-        React.createElement(
-          'div',
-          { id: 'mod-view-options', className: 'view_options ptn man', 'data-module': 'view-options' },
+          { className: 'view_options ptn man' },
           React.createElement(
             'ul',
             { className: 'actionbar_buttons mbn' },
             React.createElement(
               'li',
               { className: 'actionbar_button_wrapper' },
-              React.createElement(
-                'button',
-                { id: 'view_options_button', className: 'btn dropdown_button mvn mrn', 'data-type': 'view-options-menu-btn', 'aria-haspopup': 'true', 'data-resin-feature': 'none', 'data-resin-target': 'viewoptionsmenu', 'data-tooltip': '', 'data-tooltip-position': 'top', 'aria-label': 'View Options' },
-                React.createElement(
-                  'ul',
-                  { className: 'inline_list' },
-                  React.createElement('li', { className: 'icon sprite_actionbar_eyeball' }),
-                  React.createElement(
-                    'li',
-                    null,
-                    React.createElement(
-                      'span',
-                      { className: 'toggle' },
-                      React.createElement('b', { className: 'arrow' })
-                    )
-                  )
-                )
-              )
+              React.createElement(OptionsButton, null)
             ),
             React.createElement(
               'li',
-              { id: 'nav_paging', className: 'actionbar_button_wrapper' },
+              { className: 'actionbar_button_wrapper' },
               React.createElement(
                 'div',
-                { id: 'top_pages' },
+                null,
                 React.createElement(
                   'div',
-                  { id: 'paging_menu', className: 'box-menu handle_menu_events', style: displayNone },
+                  { className: 'box-menu handle_menu_events', style: displayNone },
                   React.createElement(
                     'div',
                     { className: 'cntr drop_down_ext scrollable ignore_mousedown' },
                     React.createElement(
                       'ul',
                       { className: 'list_menu hover_list' },
-                      ' ',
                       React.createElement(
                         'li',
                         { id: 'page_1', className: 'selected' },
                         React.createElement(
                           'a',
-                          { href: '#', id: 'page_link_1', 'data-page_num': '1', 'data-type': 'paging-link' },
+                          { href: '#' },
                           '1'
                         )
                       )
@@ -27701,7 +27426,7 @@ var ActionBar = React.createClass({
               { className: 'select_all' },
               React.createElement(
                 'a',
-                { href: '#', className: 'sprite_item_list_checkbox img', 'data-resin-feature': 'none', 'data-resin-target': 'checkall', 'data-tooltip': '', 'data-tooltip-position': 'top', 'aria-label': 'Select / Deselect All', 'data-type': 'toggle-item-list-selection' },
+                { href: '#', className: 'sprite_item_list_checkbox img' },
                 React.createElement('input', { style: displayNone, type: 'checkbox' })
               )
             )
@@ -27710,12 +27435,11 @@ var ActionBar = React.createClass({
       )
     );
   }
-
 });
 
 module.exports = ActionBar;
 
-},{"./ActionButton.jsx":255,"react":247,"react-modal":8}],255:[function(require,module,exports){
+},{"./ActionButton.jsx":258,"./AddItemDialog.jsx":262,"./ButtonIcon.jsx":263,"./OptionsButton.jsx":267,"react":247}],258:[function(require,module,exports){
 var React = require('react');
 var Button = require('./ActionButton/Button.jsx');
 var MenuPopup = require('./ActionButton/MenuPopup.jsx');
@@ -27729,13 +27453,18 @@ var ActionButton = React.createClass({
     return { showDropdown: false, hasDropdown: this.props.hasDropdown };
   },
 
+  componentWillUpdate: function (nextProps, nextState) {
+    var self = this;
+    if (nextState.showDropdown) {
+      $('html').one('click', function () {
+        self.setState({ showDropdown: false });
+      });
+    }
+  },
+
   buttonClick: function (e) {
     e.stopPropagation();
     var self = this;
-
-    $('html').one('click', function () {
-      self.setState({ showDropdown: false });
-    });
 
     if (this.state.showDropdown) {
       this.setState({ showDropdown: false });
@@ -27751,7 +27480,7 @@ var ActionButton = React.createClass({
 
     return React.createElement(
       'div',
-      { 'class': 'actionbar_button_wrapper' },
+      null,
       React.createElement(Button, { text: this.props.text, hasDropdown: this.state.hasDropdown, onClick: this.buttonClick }),
       React.createElement(MenuPopup, { show: this.state.showDropdown, menuItems: this.props.menuItems })
     );
@@ -27761,7 +27490,7 @@ var ActionButton = React.createClass({
 
 module.exports = ActionButton;
 
-},{"./ActionButton/Button.jsx":256,"./ActionButton/MenuPopup.jsx":257,"react":247}],256:[function(require,module,exports){
+},{"./ActionButton/Button.jsx":259,"./ActionButton/MenuPopup.jsx":260,"react":247}],259:[function(require,module,exports){
 var React = require('react');
 
 var Button = React.createClass({
@@ -27803,7 +27532,7 @@ var Button = React.createClass({
 
 module.exports = Button;
 
-},{"react":247}],257:[function(require,module,exports){
+},{"react":247}],260:[function(require,module,exports){
 var React = require('react');
 var MenuPopupItem = require('./MenuPopupItem.jsx');
 
@@ -27840,7 +27569,7 @@ var MenuPopup = React.createClass({
 
 module.exports = MenuPopup;
 
-},{"./MenuPopupItem.jsx":258,"react":247}],258:[function(require,module,exports){
+},{"./MenuPopupItem.jsx":261,"react":247}],261:[function(require,module,exports){
 var React = require('react');
 
 var MenuPopupItem = React.createClass({
@@ -27899,7 +27628,231 @@ var MenuPopupItem = React.createClass({
 
 module.exports = MenuPopupItem;
 
-},{"react":247}],259:[function(require,module,exports){
+},{"react":247}],262:[function(require,module,exports){
+var React = require('react');
+var Modal = require('react-modal');
+
+var AddItemDialog = React.createClass({
+  displayName: 'AddItemDialog',
+
+
+  getInitialState: function () {
+    return {
+      modalIsOpen: this.props.modalIsOpen || false,
+      newFolderName: this.props.initialInputText || ''
+    };
+  },
+
+  componentWillReceiveProps: function (nextProps) {
+    this.setState({ modalIsOpen: nextProps.modalIsOpen });
+  },
+
+  openModal: function () {
+    this.setState({ modalIsOpen: true });
+  },
+
+  afterOpenModal: function () {
+    this.refs.formInput.focus();
+  },
+
+  closeModal: function () {
+    this.setState({ modalIsOpen: false });
+  },
+
+  saveNew: function () {
+    var name = this.refs.formInput.value;
+    var saveCall = this.props.clickSave;
+    if (saveCall) {
+      saveCall(name);
+    }
+    this.setState({ modalIsOpen: false });
+  },
+
+  newFolderNameChange: function (e) {
+    this.setState({ newFolderName: e.target.value });
+  },
+
+  render: function () {
+    var bodyStyle = {};
+
+    var positionRelative = {
+      position: 'relative'
+    };
+
+    var customStyles = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+      },
+      overlay: {
+        zIndex: 3,
+        backgroundColor: 'rgba(221, 221, 221, 0.74902)'
+
+      }
+    };
+
+    var popupStyle = {
+      top: '5px', left: '464.5px', width: '420px',
+      zIndex: 4
+    };
+
+    var displayNone = {
+      display: 'none'
+    };
+
+    return React.createElement(
+      Modal,
+      { isOpen: this.state.modalIsOpen,
+        onAfterOpen: this.afterOpenModal,
+        onRequestClose: this.closeModal,
+        style: customStyles },
+      React.createElement(
+        'div',
+        { style: popupStyle },
+        React.createElement(
+          'div',
+          { className: 'popup_inner' },
+          React.createElement(
+            'div',
+            { className: 'hd rtll rtrl', id: 'box_popup_header' },
+            React.createElement(
+              'div',
+              { className: 'media mvn pvs' },
+              React.createElement('a', { className: 'img_ext mls sprite_16x16_close_modern', onClick: this.closeModal }),
+              React.createElement(
+                'div',
+                { className: 'bd lc' },
+                React.createElement(
+                  'h2',
+                  { className: 'popup_title ' },
+                  'Create New Folder'
+                )
+              )
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'bd phl', id: 'popup_content' },
+            React.createElement(
+              'form',
+              { className: 'basic_list' },
+              React.createElement(
+                'div',
+                { className: 'line' },
+                React.createElement(
+                  'div',
+                  { className: 'unit size1of1' },
+                  React.createElement(
+                    'strong',
+                    null,
+                    'Folder Name:'
+                  )
+                )
+              ),
+              React.createElement(
+                'div',
+                { className: 'line split_column' },
+                React.createElement(
+                  'div',
+                  { className: 'unit control mbm size1of1' },
+                  React.createElement('input', { type: 'text', name: 'folder_name', id: 'new_folder_popup_name', onclick: '', value: this.state.newFolderName, onChange: this.newFolderNameChange, className: 'input', ref: 'formInput' })
+                )
+              )
+            )
+          ),
+          React.createElement(
+            'div',
+            { className: 'ft rbll rbrl ', id: 'popup_footer', style: positionRelative },
+            React.createElement(
+              'li',
+              { id: 'popup_footer_buttons', className: '' },
+              React.createElement(
+                'div',
+                { className: 'line split_column' },
+                React.createElement(
+                  'div',
+                  { className: 'unit control size1of1' },
+                  React.createElement(
+                    'ul',
+                    { className: 'inline_list footer_buttons_list' },
+                    React.createElement(
+                      'li',
+                      { className: '' },
+                      React.createElement(
+                        'div',
+                        { className: 'control' },
+                        React.createElement(
+                          'button',
+                          { className: 'btn button_control', onClick: this.saveNew },
+                          React.createElement(
+                            'span',
+                            { className: 'button_val' },
+                            'Okay'
+                          )
+                        )
+                      )
+                    ),
+                    React.createElement(
+                      'li',
+                      { className: '' },
+                      React.createElement(
+                        'div',
+                        { className: 'control' },
+                        React.createElement(
+                          'button',
+                          { className: 'btn button_control', onClick: this.closeModal },
+                          React.createElement(
+                            'span',
+                            { className: 'button_val' },
+                            'Cancel'
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    );
+  }
+
+});
+
+module.exports = AddItemDialog;
+
+},{"react":247,"react-modal":8}],263:[function(require,module,exports){
+var React = require('react');
+
+var ButtonIcon = React.createClass({
+  displayName: "ButtonIcon",
+
+
+  render: function () {
+    var style = {};
+
+    return React.createElement(
+      "button",
+      { className: "btn mvn" },
+      React.createElement(
+        "ul",
+        { className: "inline_list" },
+        React.createElement("li", { className: "icon sprite_actionbar_note_create_grey man mls" })
+      )
+    );
+  }
+
+});
+
+module.exports = ButtonIcon;
+
+},{"react":247}],264:[function(require,module,exports){
 var React = require('react');
 
 var FolderItem = React.createClass({
@@ -28089,7 +28042,7 @@ var FolderItem = React.createClass({
 
 module.exports = FolderItem;
 
-},{"react":247}],260:[function(require,module,exports){
+},{"react":247}],265:[function(require,module,exports){
 var React = require('react');
 var FolderItem = require('./FolderItem.jsx');
 var FileItem = require('./FileItem.jsx');
@@ -28205,7 +28158,7 @@ var Body = React.createClass({
 
 module.exports = Body;
 
-},{"./FileItem.jsx":259,"./FolderItem.jsx":261,"react":247}],261:[function(require,module,exports){
+},{"./FileItem.jsx":264,"./FolderItem.jsx":266,"react":247}],266:[function(require,module,exports){
 var React = require('react');
 
 var FolderItem = React.createClass({
@@ -28385,7 +28338,183 @@ var FolderItem = React.createClass({
 
 module.exports = FolderItem;
 
-},{"react":247}],262:[function(require,module,exports){
+},{"react":247}],267:[function(require,module,exports){
+var React = require('react');
+var Button = require('./OptionsButton/Button.jsx');
+var OptionsDropup = require('./OptionsButton/OptionsDropup.jsx');
+
+var OptionsButton = React.createClass({
+  displayName: 'OptionsButton',
+
+  getInitialState: function () {
+    return { showDropup: false };
+  },
+
+  componentWillUpdate: function (nextProps, nextState) {
+    var self = this;
+    if (nextState.showDropup) {
+      $('html').one('click', function () {
+        self.setState({ showDropup: false });
+      });
+    }
+  },
+
+  toggleDropup: function (e) {
+    this.setState({ showDropup: !this.state.showDropup });
+  },
+
+  render: function () {
+    var style = {};
+
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(Button, { handleClick: this.toggleDropup }),
+      React.createElement(OptionsDropup, { show: this.state.showDropup })
+    );
+  }
+
+});
+
+module.exports = OptionsButton;
+
+},{"./OptionsButton/Button.jsx":268,"./OptionsButton/OptionsDropup.jsx":269,"react":247}],268:[function(require,module,exports){
+var React = require('react');
+
+var Button = React.createClass({
+  displayName: "Button",
+
+
+  render: function () {
+    var style = {};
+
+    return React.createElement(
+      "button",
+      { className: "btn dropdown_button mvn mrn", onClick: this.props.handleClick },
+      React.createElement(
+        "ul",
+        { className: "inline_list" },
+        React.createElement("li", { className: "icon sprite_actionbar_eyeball" }),
+        React.createElement(
+          "li",
+          null,
+          React.createElement(
+            "span",
+            { className: "toggle" },
+            React.createElement("b", { className: "arrow" })
+          )
+        )
+      )
+    );
+  }
+
+});
+
+module.exports = Button;
+
+},{"react":247}],269:[function(require,module,exports){
+var React = require('react');
+
+var OptionsDropup = React.createClass({
+  displayName: 'OptionsDropup',
+
+
+  getInitialState: function () {
+    return { show: false };
+  },
+
+  componentWillReceiveProps: function (nextProps) {
+    this.setState({ show: nextProps.show });
+  },
+
+  render: function () {
+    var style = {};
+
+    var optionMenuStyle = {
+      position: 'absolute',
+      maxWidth: '250px',
+      width: 'auto',
+      top: '-73px',
+      left: '0.5px',
+      display: this.state.show ? 'block' : 'none'
+    };
+
+    return React.createElement(
+      'ul',
+      { 'data-type': 'view-options-menu', className: 'view-options-menu list_menu ui-menu ui-widget ui-widget-content ui-corner-all', style: optionMenuStyle, 'data-resin-feature': 'none', id: 'ui-id-10', role: 'menu', tabindex: '0', 'aria-activedescendant': 'ui-id-15' },
+      React.createElement(
+        'li',
+        { className: 'ui-menu-label sort-label pts' },
+        'Sort by'
+      ),
+      React.createElement(
+        'li',
+        { 'data-type': 'sort', 'data-sort': 'name', className: 'ui-menu-item', role: 'presentation' },
+        React.createElement(
+          'a',
+          { href: '#', 'data-resin-target': 'sortname', id: 'ui-id-11', className: 'ui-corner-all', tabindex: '-1', role: 'menuitem' },
+          React.createElement('span', { className: 'arrow' }),
+          'Name'
+        )
+      ),
+      React.createElement(
+        'li',
+        { 'data-type': 'sort', 'data-sort': 'date', className: 'selected ui-menu-item', role: 'presentation' },
+        React.createElement(
+          'a',
+          { href: '#', 'data-resin-target': 'sortdate', id: 'ui-id-12', className: 'ui-corner-all', tabindex: '-1', role: 'menuitem' },
+          React.createElement('span', { className: 'arrow menu_arrow_down' }),
+          'Date'
+        )
+      ),
+      React.createElement(
+        'li',
+        { 'data-type': 'sort', 'data-sort': 'size', className: 'ui-menu-item', role: 'presentation' },
+        React.createElement(
+          'a',
+          { href: '#', 'data-resin-target': 'sortsize', id: 'ui-id-13', className: 'ui-corner-all', tabindex: '-1', role: 'menuitem' },
+          React.createElement('span', { className: 'arrow' }),
+          'Size'
+        )
+      ),
+      React.createElement(
+        'li',
+        { className: 'display-divider mvs ui-widget-content ui-menu-divider' },
+        '-'
+      ),
+      React.createElement(
+        'li',
+        { className: 'ui-menu-label display-label' },
+        'Display as'
+      ),
+      React.createElement(
+        'li',
+        { 'data-type': 'display', 'data-display': 'list', className: 'selected ui-menu-item', role: 'presentation' },
+        React.createElement(
+          'a',
+          { href: '#', 'data-resin-target': 'displaylist', id: 'ui-id-14', className: 'ui-corner-all', tabindex: '-1', role: 'menuitem' },
+          React.createElement('span', { className: 'icon mrm sprite_menus_list_view' }),
+          'List View'
+        )
+      ),
+      React.createElement(
+        'li',
+        { 'data-type': 'display', 'data-display': 'icon', className: 'ui-menu-item', role: 'presentation' },
+        React.createElement(
+          'a',
+          { href: '#', 'data-resin-target': 'displayicon', id: 'ui-id-15', className: 'ui-corner-all', tabindex: '-1', role: 'menuitem' },
+          React.createElement('span', { className: 'icon mrm sprite_menus_icon_view' }),
+          'Icon View'
+        )
+      )
+    );
+  }
+
+});
+
+module.exports = OptionsDropup;
+
+},{"react":247}],270:[function(require,module,exports){
 var React = require('react');
 var ActionBar = require('./ActionBar.jsx');
 var Files = require('./Files.jsx');
@@ -28417,7 +28546,7 @@ var PageBody = React.createClass({
 
 module.exports = PageBody;
 
-},{"./ActionBar.jsx":254,"./Files.jsx":260,"./RightColumn.jsx":263,"react":247}],263:[function(require,module,exports){
+},{"./ActionBar.jsx":257,"./Files.jsx":265,"./RightColumn.jsx":271,"react":247}],271:[function(require,module,exports){
 var React = require('react');
 
 var RightColumn = React.createClass({
@@ -28605,7 +28734,7 @@ var RightColumn = React.createClass({
 
 module.exports = RightColumn;
 
-},{"react":247}],264:[function(require,module,exports){
+},{"react":247}],272:[function(require,module,exports){
 var React = require('react');
 
 var breakcrumbLinks = [{ id: 1, text: 'All Files' }, { id: 2, text: 'Music' }, { id: 3, text: '127 Hours - A. R. Rahman' }, { id: 4, text: 'Favorites' }];
@@ -28654,7 +28783,7 @@ var SubHeader = React.createClass({
 
 module.exports = SubHeader;
 
-},{"react":247}],265:[function(require,module,exports){
+},{"react":247}],273:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
@@ -28713,7 +28842,7 @@ var HomePage = React.createClass({
 
 module.exports = HomePage;
 
-},{"react":247,"react-router":51}],266:[function(require,module,exports){
+},{"react":247,"react-router":51}],274:[function(require,module,exports){
 var React = require('react');
 
 var SettingsPage = React.createClass({
@@ -28732,7 +28861,7 @@ var SettingsPage = React.createClass({
 
 module.exports = SettingsPage.jsx;
 
-},{"react":247}],267:[function(require,module,exports){
+},{"react":247}],275:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var NavBar = require('./components/nav/NavBar.jsx');
@@ -28740,4 +28869,4 @@ var Routes = require('./Routes.jsx');
 
 ReactDOM.render(Routes, document.getElementById('application'));
 
-},{"./Routes.jsx":249,"./components/nav/NavBar.jsx":250,"react":247,"react-dom":1}]},{},[267]);
+},{"./Routes.jsx":249,"./components/nav/NavBar.jsx":250,"react":247,"react-dom":1}]},{},[275]);

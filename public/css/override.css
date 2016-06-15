@@ -39,3 +39,13 @@
   background: url(../img/amsterdam/sprite.compat--2EiG2.png) -480px -2287px;
   background: url(../img/amsterdam/sprite-hg2eoN.png) -68px -4675px/256px 5050px;
 }
+
+.phl {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.hd {
+      padding-left: 5px !important;
+
+}

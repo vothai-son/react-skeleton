@@ -9,13 +9,18 @@ var ActionButton = React.createClass({
     return { showDropdown: false, hasDropdown: this.props.hasDropdown };
   },
 
+  componentWillUpdate: function (nextProps, nextState) {
+    var self = this;
+    if (nextState.showDropdown) {
+      $('html').one('click', function () {
+        self.setState({ showDropdown: false });
+      });
+    }
+  },
+
   buttonClick: function (e) {
     e.stopPropagation();
-    var self = this;
-
-    $('html').one('click', function () {
-      self.setState({ showDropdown: false });
-    });
+    var self = this;   
 
     if (this.state.showDropdown) {
       this.setState({ showDropdown: false });
@@ -33,7 +38,7 @@ var ActionButton = React.createClass({
     
 
     return (
-      <div class="actionbar_button_wrapper">
+      <div>
         <Button text={this.props.text} hasDropdown={this.state.hasDropdown} onClick={this.buttonClick}/>
         <MenuPopup show={this.state.showDropdown} menuItems={this.props.menuItems}/>
       </div>
