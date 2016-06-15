@@ -1,13 +1,32 @@
 var React = require('react');
+var Modal = require('react-modal');
+var ActionButton = require('./ActionButton.jsx');
 
 var ActionBar = React.createClass({
 
+  getInitialState: function () {
+    return { modalIsOpen: false };
+  },
+
+  openModal: function () {
+    this.setState({ modalIsOpen: true });
+  },
+
+  afterOpenModal: function () {
+    // references are now sync'd and can be accessed.
+    this.refs.subtitle.style.color = '#f00';
+  },
+
+  closeModal: function () {
+    console.log('input value: ', this.refs.formInput.value);
+    this.setState({ modalIsOpen: false });
+  },
+
+  clickNew: function (e) {
+    this.openModal();
+  },
 
   render: function () {
-
-    var uploadMenuStyle = {
-      position: 'absolute', display: 'none'
-    };
 
     var displayNone = {
       display: 'none'
@@ -38,133 +57,130 @@ var ActionBar = React.createClass({
     };
     var new_gsheetapps_link = {
       backgroundImage: 'url(https://cdn01.boxcdn.net/_assets/img/gsheet_favicon-jRHrOX.gif);"'
-    }; 
+    };
     var new_gdocapps_link = {
       backgroundImage: 'url(https://app.box.com/index.php?rm=pic_storage_auth&amp;pic=euks!pac3kv01!FUz06iLrysq2g2_SOHMwH_JS0unYFvEUK44kaIOwe0A9oM0CllE3XCe9q9PDeBOdt6NR7agK4Qrjl57XqsjZ-foWHOJr31bgMeAGBZ3PY6XkvWFgx1upNBT5WATIDgXEsOkAfxd3dPnHD1AdILfwOzgW01o7mkjBjIVeitEKvA68Am7aEwL6MzPVZ_ti0HyPK1opitUXc8BMC6o7_VAqXW2xTycuGQHfYCoEanBG0KTgzMOZEqH0iwUyPyidWFkvBVlHJY0bU-z2hk7KX-ofM9igtlHd5S4SWxyc-B7Hv8EYyw6JTrfLgEWmlu3fEeZvqa8IF-IprAWhuJYNftuM7cEZEF4GwJLzkXFa3Cnc-g..);"'
     };
 
+    const customStyles = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+      }
+    };
+
+    var menuItems = [
+      {
+        text: "File", type: "file",
+        handleClick: function () {
+          console.log('click on file');
+
+        }.bind(this)
+      },
+      {
+        text: "Folder", type: "folder",
+        handleClick: function () {
+          console.log('click on folder');
+          this.openModal();
+        }.bind(this)
+      }
+    ];
+
+    var popupStyle = {
+      top:'5px', left: '464.5px', width: '420px',
+    };
+
+    var submitStyle = {
+      left: '-10000px', position: 'absolute', width: '50px',
+    };
+
+    var displayNone = {
+      display: 'none'
+    };
+
+    var positionRelative = {
+      position: 'relative'
+    };
+
     return (
       <div id="actionbar-stalking-wrapper" className="multiple-rows">
+
+        <Modal isOpen={this.state.modalIsOpen}
+               onAfterOpen={this.afterOpenModal}
+               onRequestClose={this.closeModal}
+               style={customStyles}>
+
+          <div className="cntr_popup popup_layout ral popup_open" style={popupStyle}>
+          <div className="popup_inner">
+          <div className="hd rtll rtrl" id="box_popup_header">
+          <div className="media mvn pvs">
+          <span id="popup_favicon" className="img mts sprite_24x24_folder"></span>				<a className="img_ext mls sprite_16x16_close_modern" id="popup_title_close_button" href="#" data-hover="tooltip" aria-label="Close"></a>
+            <div id="popup_title_text" className="bd lc"><h2 className="popup_title ">Create New Folder</h2></div>
+          </div>		<div id="popup_tabs" className="btn-group">
+            </div>
+          </div>	<div id="j_popup_div">
+            <div className="bd phl" id="popup_content">
+            <form className="basic_list">
+            <input type="submit" value="Submit" style={submitStyle} />
+            <ul className="basic_list pop_form"></ul><li>
+            <div className="line"><div className="unit size1of1"><strong>Folder Name:</strong></div></div><div className="line split_column">
+            <div className="unit control mbm size1of1">
+            <input type="text" name="folder_name" id="new_folder_popup_name" onclick="" value="" className="input" />
+            </div>
+            </div>
+            </li>
+            </form>
+            </div>
+            </div>	<div className="progress center_contents" id="popup_progress_footer" style={displayNone}><ul id="popup_slider_progress_crumbs" className="popup_slider_progress_crumbs inline_list pvm"></ul></div>	<div className="ft rbll rbrl " id="popup_footer" style={positionRelative}>
+            <li id="popup_footer_buttons" className="">
+            <div className="line split_column">
+            <div className="unit control size1of1">
+            <ul className="inline_list footer_buttons_list">
+            <li className="">
+            <div className="control">
+              <button className="btn button_control" id="popup_button_okay"><span className="button_val">Okay</span></button>
+            </div>
+            </li>
+              <li className="">
+              <div className="control">
+              <button className="btn button_control" id="popup_button_cancel">
+              <span className="button_val">Cancel</span>
+              </button>
+              </div>
+              </li>
+            </ul>
+            </div>
+            </div>
+            </li>
+            </div>
+          </div><a href="#" className="btn_label" id="popup_accessibility_helper">&nbsp;</a>
+          </div>
+
+        </Modal>
+
         <div id="actionbar-wrapper" data-actionbar="files" data-resin-component="actionbar">
           <div id="mod-actionbar-files" className="actionbar ptn man " data-module="actionbar-files">
             <ul className="actionbar_buttons">
               <li className="actionbar_button_wrapper" data-resin-feature="upload">
-              <button id="upload_button" className="btn btn-primary dropdown_button mvn" data-type="upload-menu-btn" aria-haspopup="true" data-resin-target="uploadmenu">
-                <ul className="inline_list">
-                <li className="actionbar-upload">Upload</li>
-                <li><span className="toggle"><b className="arrow"></b></span></li>
-                </ul>
-              </button>
-                <ul tabindex="0" role="menu" className="ui-menu ui-widget ui-widget-content ui-corner-all" id="ui-id-1" data-type="upload-menu" style={uploadMenuStyle}>
-                  <li role="presentation" className="ui-menu-item" data-type="upload-files-option"> <a role="menuitem" tabindex="-1" id="ui-id-2" className="upload-files-icon ui-corner-all" href="#">Files</a></li>
-                  <li role="presentation" className="ui-menu-item" data-type="upload-directory-option">
-                  <a role="menuitem" tabindex="-1" id="ui-id-3" className="upload-folders-icon ui-corner-all" href="#">Folders</a>
-                  </li>
-                </ul>
+                <ActionButton text="New" hasDropdown={true} menuItems={menuItems} />
               </li>
-              <li className="actionbar_button_wrapper" data-resin-feature="none">
-                <button id="create_item_button" className="btn dropdown_button mvn" data-type="create-item-menu-btn" aria-haspopup="true" data-legacy-popup="true" data-resin-target="newmenu"><ul className="inline_list"> <li className="actionbar-new">New</li><li><span className="toggle"><b className="arrow"></b></span></li></ul></button>
 
-
-                <div className="box-menu mls drop_down_ext handle_menu_events" id="dd_menu_create_item" style={displayNone} data-resin-component="actionbar|newmenu">
-                  <ul className="list_menu hover_list">
-                    <li id="new_item_new_folder" data-resin-feature="itemops" data-resin-target="newfolder">
-                      <a id="new_item_new_folder_link" href="#">
-                        <span className="sprite_16x16_small_typed_folder list_img"></span>
-
-                        Folder
-                      </a>
+              <li className="actionbar_button_wrapper" data-resin-feature="interactions">
+                <button id="folder_options_button" className="btn dropdown_button mvn hidden" data-type="folder-options-btn" aria-haspopup="true" data-legacy-popup="true" data-resin-target="moredropdown">
+                  <ul className="inline_list">
+                    <li className="actionbar-more">More</li>
+                    <li>
+                      <span className="toggle">
+                      <b className="arrow" />
+                      </span>
                     </li>
-
-                    <li id="new_item_new_boxnote" data-resin-feature="upload" data-resin-target="newboxnote">
-                      <a id="new_item_new_boxnote_link" href="#">
-                        <span className="sprite_16x16 sprite_doc_16_16-boxnote list_img"></span>
-
-                        Box Note
-                      </a>
-                    </li>
-
-                    <li id="new_item_new_bookmark" data-resin-feature="upload" data-resin-target="newbookmark">
-                      <a id="new_item_new_bookmark_link" href="#">
-                        <span className="sprite_16x16_new_bookmark list_img"></span>
-
-                        Bookmark
-                      </a>
-                    </li>
-
-                    <li className="separator pan ignore_mouseover box_edit_types">
-                      <hr className="divider" />
-                    </li>
-
-                    <li id="new_box_edit_word" className="new_file_type box_edit_types" data-newdoc_extension="doc" data-newdoc_type="box_edit_word" data-resin-target="newboxeditword">
-                      <a id="new_box_edit_word_link" href="#">
-                        <span className="sprite_16x16 list_img" style={new_box_edit_word_link}></span>
-                        Word Document
-                      </a>
-                    </li>
-
-                    <li id="new_box_edit_powerpoint" className="new_file_type box_edit_types" data-newdoc_extension="ppt" data-newdoc_type="box_edit_powerpoint" data-resin-target="newboxeditpowerpoint">
-                      <a id="new_box_edit_powerpoint_link" href="#">
-                        <span className="sprite_16x16 list_img" style={new_box_edit_powerpoint_link}></span>
-                        PowerPoint Document
-                      </a>
-                    </li>
-
-                    <li id="new_box_edit_excel" className="new_file_type box_edit_types" data-newdoc_extension="xls" data-newdoc_type="box_edit_excel" data-resin-target="newboxeditexcel">
-                      <a id="new_box_edit_excel_link" href="#">
-                        <span className="sprite_16x16 list_img" style={new_box_edit_excel_link}></span>
-                        Excel Spreadsheet
-                      </a>
-                    </li>
-
-
-                    <li className="separator pan ignore_mouseover office_online_types">
-                      <hr className="divider" />
-                    </li>
-
-                    <li id="new_word_online" className="new_file_type office_online_types" data-newdoc_type=" word_online" data-resin-target="newwordonline">
-                      <a id="new_word_online_link" href="#">
-                        <span className="sprite_16x16 list_img" style={new_word_online_link}></span>
-                        Word Document
-                      </a>
-                    </li>
-
-                    <li id="new_powerpoint_online" className="new_file_type office_online_types" data-newdoc_type=" powerpoint_online" data-resin-target="newpowerpointonline">
-                      <a id="new_powerpoint_online_link" href="#">
-                        <span className="sprite_16x16 list_img" style={new_powerpoint_online_link}></span>
-                        PowerPoint Document
-                      </a>
-                    </li>
-
-                    <li id="new_excel_online" className="new_file_type office_online_types" data-newdoc_type=" excel_online" data-resin-target="newexcelonline">
-                      <a id="new_excel_online_link" href="#">
-                        <span className="sprite_16x16 list_img" style={new_excel_online_link}></span>
-                        Excel Document
-                      </a>
-                    </li>
-
-
-                    <li className="separator pan ignore_mouseover newdoc_types"><hr className="divider" /></li>
-
-                    <li id="new_gdocapps" className="new_file_type newdoc_types" data-newdoc_type=" gdocapps" data-resin-target="newgdocapps">
-                      <a id="new_gdocapps_link" href="#">
-                        <span className="sprite_16x16 list_img" style={new_gdocapps_link}></span>
-                        Google Doc
-                      </a>
-                    </li>
-
-                    <li id="new_gsheetapps" className="new_file_type newdoc_types" data-newdoc_type=" gsheetapps" data-resin-target="newgsheetapps">
-                      <a id="new_gsheetapps_link" href="#">
-                        <span className="sprite_16x16 list_img" style={new_gsheetapps_link}></span>
-                        Google Spreadsheet
-                      </a>
-                    </li>
-
-
                   </ul>
-                </div>
+                </button>
               </li>
-              <li className="actionbar_button_wrapper" data-resin-feature="interactions"><button id="folder_options_button" className="btn dropdown_button mvn hidden" data-type="folder-options-btn" aria-haspopup="true" data-legacy-popup="true" data-resin-target="moredropdown"><ul className="inline_list"> <li className="actionbar-more">More</li><li><span className="toggle"><b className="arrow"></b></span></li></ul></button></li>
               <li className="actionbar_button_wrapper" data-resin-feature="boxnotes"> <button id="new_box_note_button" className="btn mvn" data-type="new-box-note-btn" data-tooltip="" data-tooltip-position="top" aria-label="Write a quick note" data-resin-target="newboxnote"><ul className="inline_list"><li className="icon sprite_actionbar_note_create_grey man mls"></li></ul></button></li>
             </ul>
           </div>
@@ -199,9 +215,8 @@ var ActionBar = React.createClass({
           </div>
         </div>
       </div>
-
-    );
-  }
+      );
+}
 
 });
 
